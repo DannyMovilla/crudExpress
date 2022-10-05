@@ -66,8 +66,30 @@ router.post("/inscripcion", (req, res) => {
 });
 
 //Petición PUT para actualizar la inscripción
-router.put("/inscripcion", function (req, res) {
-  res.send("Got a PUT request at /user");
+router.put('/inscripcion/:inscripcionId', async (req, res) => {
+  try {
+    await InscripcionSchema.findByIdAndUpdate(req.params.inscripcionId, {
+      tipoDocumento: req.body.tipoDocumento,
+      numeroDocumento: req.body.numeroDocumento,
+      nombres: req.body.nombres,
+      apellidos: req.body.apellidos,
+      direccion: req.body.direccion,
+      correo: req.body.correo,
+      telefono: req.body.telefono,
+      celular: req.body.celular,
+      comprobante: req.body.comprobante,
+      codigoIcfes: req.body.codigoIcfes,
+      familiarUniversidad: req.body.familiarUniversidad,
+      estrato: req.body.estrato,
+      tipoColegio: req.body.tipoColegio,
+    });
+    // Send response in here
+    res.send('Incripción actualizada correctamente!');
+
+  } catch(err) {
+      console.error(err.message);
+      res.send(400).send('Server Error');
+  }
 });
 
 //Petición DELETE para actualizar la inscripción
@@ -92,6 +114,7 @@ router.delete("/inscripcion/:inscripcionId", (req, res) => {
 
 //Iniciación de servicio
 app.use(router);
-app.listen(3000, () => {
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
   console.log("Servidor corriendo en el puerto 3000");
 });

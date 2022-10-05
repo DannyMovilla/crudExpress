@@ -4,7 +4,8 @@
   "description": "Crud con Express y Mongo",
   "main": "servidor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node servidor.js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,10 @@
     "url": "https://github.com/DannyMovilla/crudExpress/issues"
   },
   "homepage": "https://github.com/DannyMovilla/crudExpress#readme",
+  "engines": {
+    "node": "16.15.0",
+    "npm": "8.5.5"
+  },
   "dependencies": {
     "express": "^4.18.1",
     "mongoose": "^6.6.4"
